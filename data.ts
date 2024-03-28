@@ -15,8 +15,8 @@ export const doctorData = [
 
 export const departmentData = [
   { id: 1, name: "OBGYN Department" },
-  { id: 1, name: "Emergency Department" },
-  { id: 2, name: "Cardiology Department" },
+  { id: 2, name: "Emergency Department" },
+  { id: 3, name: "Cardiology Department" },
 ];
 
 router.get("/", (req: Request, res: Response) => {

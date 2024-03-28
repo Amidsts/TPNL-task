@@ -58,21 +58,27 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.get("/add_departments", (req: Request, res: Response) => {
   const departmentSql = "INSERT INTO department (id, name) VALUES (?, ?)";
-  const values = departmentData.map((department) => [
-    department.id,
-    department.name,
-  ]);
 
-  db.query(departmentSql, [values], (error, results) => {
-    if (error) {
-      return res
-        .status(500)
-        .json({ error: "Error inserting data", details: error });
-    }
-    res
-      .status(201)
-      .json({ message: "Department Data inserted successfully", results });
-  });
+  const results = departmentData.map((department) => 
+    db.query(
+      departmentSql,
+      [department.id, department.name],
+      (error, data) => {
+        if (error) {
+          throw error
+          // return res
+          //   .status(500)
+          //   .json({ error: "Error inserting data", details: error });
+        }
+
+        return data
+      }
+    )
+  );
+
+  return res
+    .status(201)
+    .json({ message: "Department Data inserted successfully", results });
 });
 
 app.get("/add_doctors", (req: Request, res: Response) => {
