@@ -78,7 +78,7 @@ app.get("/add_departments", (req: Request, res: Response) => {
 
   return res
     .status(201)
-    .json({ message: "Department Data inserted successfully", results });
+    .json({ message: "Department Data inserted successfully" });
 });
 
 app.get("/add_doctors", (req: Request, res: Response) => {
